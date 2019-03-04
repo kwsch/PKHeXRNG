@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 using Magnetosphere;
@@ -42,7 +40,7 @@ namespace PKHeXRNG
             CB_PKMOffsets.SelectedIndexChanged += (s, e) => NUD_Read.Value = source[CB_PKMOffsets.SelectedIndex].Value;
             CB_PKMOffsets.SelectedIndex = 0;
             NUD_Read.Value = source[0].Value;
-            NUD_ReadOffset.Value = source[0].Value;
+            NUD_ReadOffset.Value = NUD_SearchOffset.Value = source[0].Value;
         }
 
         private void B_Disconnect_Click(object sender, EventArgs e)
@@ -82,73 +80,24 @@ namespace PKHeXRNG
             return pkm.ChecksumValid && pkm.Species != 0;
         }
 
-        public static class GameOffsets
-        {
-            public static Dictionary<string, int> SMOffsets = new Dictionary<string, int>
-            {
-                ["Party1"] = 0x34195E10 + (0 * 0x1E4),
-                ["Party2"] = 0x34195E10 + (1 * 0x1E4),
-                ["Party3"] = 0x34195E10 + (2 * 0x1E4),
-                ["Party4"] = 0x34195E10 + (3 * 0x1E4),
-                ["Party5"] = 0x34195E10 + (4 * 0x1E4),
-                ["Party6"] = 0x34195E10 + (5 * 0x1E4),
-
-                ["Wild"] = 0x3254F4AC,
-                ["SOS"] = 0x3002F7B8,
-                ["Parent1"] = 0x3313EC01,
-                ["Parent2"] = 0x3313ECEA,
-            };
-
-            public static Dictionary<string, int> USUMOffsets = new Dictionary<string, int>
-            {
-                ["Party1"] = 0x33F7FA44 + (0 * 0x1E4),
-                ["Party2"] = 0x33F7FA44 + (1 * 0x1E4),
-                ["Party3"] = 0x33F7FA44 + (2 * 0x1E4),
-                ["Party4"] = 0x33F7FA44 + (3 * 0x1E4),
-                ["Party5"] = 0x33F7FA44 + (4 * 0x1E4),
-                ["Party6"] = 0x33F7FA44 + (5 * 0x1E4),
-
-                ["Wild"] = 0x3002f9a0,
-                ["SOS"] = 0x3002F9A0,
-                ["Parent1"] = 0x3307B011,
-                ["Parent2"] = 0x3307B0FA,
-            };
-
-            public static Dictionary<string, int> GetPKMOffsets(GameVersion game)
-            {
-                if (GameVersion.SN == game || GameVersion.MN == game)
-                    return SMOffsets;
-                if (GameVersion.US == game || GameVersion.UM == game)
-                    return USUMOffsets;
-                return new Dictionary<string, int>();
-            }
-        }
-
         private void B_ReadMemory_Click(object sender, EventArgs e)
         {
             uint ofs = (uint)NUD_ReadOffset.Value;
             uint len = (uint)NUD_ReadLength.Value;
             var data = Citra.ReadMemory(ofs, len);
 
-            richTextBox1.Text = HexDump(data);
+            RTB_MemDump.Text = DumpUtil.HexDump(data);
         }
 
-        private static string HexDump(byte[] data)
+        private void B_Search_Click(object sender, EventArgs e)
         {
-            var sb = new StringBuilder();
-            for (int i = 0; i < data.Length; i++)
-            {
-                if (i != 0)
-                {
+            uint ofs = (uint)NUD_SearchOffset.Value;
+            uint len = (uint)NUD_SearchLength.Value;
+            var data = DumpUtil.ReadHex(RTB_Sequence.Text);
 
-                    if ((i & 0xF) == 0)
-                        sb.Append(Environment.NewLine);
-                    else
-                        sb.Append(' ');
-                }
-                sb.Append(data[i].ToString("X2"));
-            }
-            return sb.ToString();
+            var offsets = Citra.FindSequences(data, ofs, len, 0x8000);
+            var lines = string.Join(Environment.NewLine, offsets.Select(z => z.ToString("X8")));
+            RTB_Offsets.Text = lines;
         }
     }
 }
