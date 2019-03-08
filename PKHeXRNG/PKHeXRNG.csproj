@@ -56,9 +56,12 @@
       <DependentUpon>CitraRNG.cs</DependentUpon>
     </Compile>
     <Compile Include="DumpUtil.cs" />
+    <Compile Include="G7GameState.cs" />
     <Compile Include="GameOffsets.cs" />
     <Compile Include="RNGPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RNGState.cs" />
+    <Compile Include="SFMT.cs" />
     <Compile Include="WinFormsUtil.cs" />
   </ItemGroup>
   <ItemGroup>

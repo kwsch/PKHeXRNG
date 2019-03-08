@@ -5,7 +5,7 @@ namespace PKHeXRNG
 {
     public static class GameOffsets
     {
-        public static Dictionary<string, int> SMOffsets = new Dictionary<string, int>
+        public static Dictionary<string, ulong> SM = new Dictionary<string, ulong>
         {
             ["TeamA1"] = 0x3002E070, // Player 1
             ["TeamA2"] = 0x3002E070 + (1 * 0x1E4),
@@ -81,7 +81,7 @@ namespace PKHeXRNG
 
         };
 
-        public static Dictionary<string, int> USUMOffsets = new Dictionary<string, int>
+        public static Dictionary<string, ulong> USUM = new Dictionary<string, ulong>
         {
             ["SOS"] = 0x3002F9A0,
             ["Parent1"] = 0x3307B011,
@@ -95,13 +95,13 @@ namespace PKHeXRNG
             ["Party6"] = 0x33F7FA44 + (5 * 0x1E4),
         };
 
-        public static Dictionary<string, int> GetPKMOffsets(GameVersion game)
+        public static Dictionary<string, ulong> GetPKMOffsets(GameVersion game)
         {
             if (GameVersion.SN == game || GameVersion.MN == game)
-                return SMOffsets;
+                return SM;
             if (GameVersion.US == game || GameVersion.UM == game)
-                return USUMOffsets;
-            return new Dictionary<string, int>();
+                return USUM;
+            return new Dictionary<string, ulong>();
         }
     }
 }

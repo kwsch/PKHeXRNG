@@ -33,7 +33,7 @@ namespace PKHeXRNG
             if (pkmOffsets.Count == 0)
                 return;
 
-            var source = pkmOffsets.Select(z => new ComboItem {Text = z.Key, Value = z.Value}).ToList();
+            var source = pkmOffsets.Select(z => new ComboItem {Text = z.Key, Value = (int)z.Value}).ToList();
             CB_PKMOffsets.DisplayMember = nameof(ComboItem.Text);
             CB_PKMOffsets.ValueMember = nameof(ComboItem.Value);
             CB_PKMOffsets.DataSource = source;
@@ -43,9 +43,12 @@ namespace PKHeXRNG
             NUD_ReadOffset.Value = NUD_SearchOffset.Value = source[0].Value;
         }
 
+        private readonly System.Timers.Timer StateMonitor = new System.Timers.Timer(500);
+
         private void B_Disconnect_Click(object sender, EventArgs e)
         {
             ToggleConnection(false);
+            StateMonitor.Stop();
         }
 
         private void B_Connect_Click(object sender, EventArgs e)
@@ -54,6 +57,21 @@ namespace PKHeXRNG
             CitraWindow.Connect();
             Citra = (CitraTranslator) CitraWindow.Translator;
             ToggleConnection(true);
+
+            var state = G7GameState.GetState(Plugin.SaveFileEditor.SAV.Version, Citra);
+            propertyGrid1.SelectedObject = state;
+            LoadRNGStateView(state);
+        }
+
+        private void LoadRNGStateView(G7GameState state)
+        {
+            StateMonitor.Elapsed += (s, e) =>
+            {
+                state.Update();
+                propertyGrid1.Invalidate();
+            };
+            ((G7GameState) propertyGrid1.SelectedObject).LoadTrainerData(Plugin.SaveFileEditor.SAV);
+            StateMonitor.Start();
         }
 
         private void ToggleConnection(bool conn)
@@ -98,6 +116,12 @@ namespace PKHeXRNG
             var offsets = Citra.FindSequences(data, ofs, len, 0x8000);
             var lines = string.Join(Environment.NewLine, offsets.Select(z => z.ToString("X8")));
             RTB_Offsets.Text = lines;
+        }
+
+        private void CitraRNG_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            StateMonitor.Stop();
+            StateMonitor.Dispose();
         }
     }
 }

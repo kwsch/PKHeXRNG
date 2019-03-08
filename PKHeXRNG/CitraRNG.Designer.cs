@@ -54,6 +54,7 @@
             this.B_Search = new System.Windows.Forms.Button();
             this.NUD_SearchOffset = new System.Windows.Forms.NumericUpDown();
             this.B_Disconnect = new System.Windows.Forms.Button();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Port)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Tab_Main.SuspendLayout();
@@ -119,6 +120,7 @@
             // 
             // Tab_Main
             // 
+            this.Tab_Main.Controls.Add(this.propertyGrid1);
             this.Tab_Main.Controls.Add(this.CB_PKMOffsets);
             this.Tab_Main.Controls.Add(this.B_ReadPKM);
             this.Tab_Main.Controls.Add(this.NUD_Read);
@@ -378,6 +380,13 @@
             this.B_Disconnect.UseVisualStyleBackColor = true;
             this.B_Disconnect.Click += new System.EventHandler(this.B_Disconnect_Click);
             // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Location = new System.Drawing.Point(6, 32);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(325, 333);
+            this.propertyGrid1.TabIndex = 3;
+            // 
             // CitraRNG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -390,6 +399,7 @@
             this.Controls.Add(this.B_Connect);
             this.Name = "CitraRNG";
             this.Text = "CitraRNG";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CitraRNG_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Port)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.Tab_Main.ResumeLayout(false);
@@ -435,5 +445,6 @@
         private System.Windows.Forms.Button B_Search;
         private System.Windows.Forms.NumericUpDown NUD_SearchOffset;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PropertyGrid propertyGrid1;
     }
 }
