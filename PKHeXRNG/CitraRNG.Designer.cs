@@ -55,6 +55,7 @@
             this.NUD_SearchOffset = new System.Windows.Forms.NumericUpDown();
             this.B_Disconnect = new System.Windows.Forms.Button();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.L_LastViewed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Port)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Tab_Main.SuspendLayout();
@@ -120,6 +121,7 @@
             // 
             // Tab_Main
             // 
+            this.Tab_Main.Controls.Add(this.L_LastViewed);
             this.Tab_Main.Controls.Add(this.propertyGrid1);
             this.Tab_Main.Controls.Add(this.CB_PKMOffsets);
             this.Tab_Main.Controls.Add(this.B_ReadPKM);
@@ -387,6 +389,16 @@
             this.propertyGrid1.Size = new System.Drawing.Size(325, 333);
             this.propertyGrid1.TabIndex = 3;
             // 
+            // L_LastViewed
+            // 
+            this.L_LastViewed.AutoSize = true;
+            this.L_LastViewed.Location = new System.Drawing.Point(337, 8);
+            this.L_LastViewed.Name = "L_LastViewed";
+            this.L_LastViewed.Size = new System.Drawing.Size(68, 13);
+            this.L_LastViewed.TabIndex = 4;
+            this.L_LastViewed.Text = "Last Viewed:";
+            this.L_LastViewed.Visible = false;
+            // 
             // CitraRNG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,6 +415,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Port)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.Tab_Main.ResumeLayout(false);
+            this.Tab_Main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Read)).EndInit();
             this.Tab_Memory.ResumeLayout(false);
             this.Tab_Memory.PerformLayout();
@@ -446,5 +459,6 @@
         private System.Windows.Forms.NumericUpDown NUD_SearchOffset;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
+        private System.Windows.Forms.Label L_LastViewed;
     }
 }

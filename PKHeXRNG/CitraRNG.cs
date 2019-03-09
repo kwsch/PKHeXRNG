@@ -89,6 +89,8 @@ namespace PKHeXRNG
                 return;
             }
             Plugin.PKMEditor.PopulateFields(pkm);
+            L_LastViewed.Text = "Last Viewed:" + Environment.NewLine + Environment.NewLine + ShowdownSet.GetShowdownText(pkm);
+            L_LastViewed.Visible = true;
         }
 
         public bool GetPKM(uint offset, out PKM pkm)

@@ -6,17 +6,12 @@ namespace PKHeXRNG
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class RNGState
     {
-        public ulong SeedAddress { private get; set; }
-        public ulong SFMTStart { private get; set; }
-        public ulong SFMTIndex { private get; set; }
+        internal ulong SFMTAddressSeed { private get; set; }
+        internal ulong SFMTAddressStart { private get; set; }
+        private ulong SFMTAddressIndex { get; set; }
 
-        [TypeConverter(typeof(ExpandableObjectConverter))]
-        public uint InitialSeedOffset { get; private set; }
-
-        [TypeConverter(typeof(ExpandableObjectConverter))]
-        public ulong CurrentSeedOffset { get; private set; }
-
-        [TypeConverter(typeof(ExpandableObjectConverter))]
+        public uint InitialSeed { get; private set; }
+        public ulong CurrentSeed { get; private set; }
         public int FrameCount { get; private set; } = -1;
 
         private SFMT SFMT { get; set; }
@@ -25,31 +20,32 @@ namespace PKHeXRNG
         public void Initialize(IDeviceRW device)
         {
             Device = device;
-            InitialSeedOffset = Device.ReadUInt32(SeedAddress);
-            SFMT = new SFMT(InitialSeedOffset);
-            CurrentSeedOffset = InitialSeedOffset;
+            InitialSeed = Device.ReadUInt32(SFMTAddressSeed);
+            SFMTAddressIndex = SFMTAddressStart + 0x9C0;
+            SFMT = new SFMT(InitialSeed);
+            CurrentSeed = InitialSeed;
             FrameCount = 0;
         }
 
         public void UpdateFrame()
         {
-            var game = GetCurrentSeed();
-            var seed = CurrentSeedOffset;
+            var game = CalcCurrentSeed();
+            var seed = CurrentSeed;
             var consumed = 0;
 
-            while (game != seed && consumed < 100000)
+            while (game != seed && consumed < 10000)
             {
                 seed = SFMT.Next64();
                 consumed++;
             }
 
             FrameCount += consumed;
-            CurrentSeedOffset = seed;
+            CurrentSeed = seed;
         }
 
-        public ulong GetCurrentSeed()
+        public ulong CalcCurrentSeed()
         {
-            var index = Device.ReadUInt32(SFMTIndex);
+            var index = Device.ReadUInt32(SFMTAddressIndex);
             var pointer = GetSFMTPointer(index);
             var seed1 = Device.ReadUInt32(pointer);
             var seed2 = Device.ReadUInt32(pointer + 4);
@@ -61,9 +57,9 @@ namespace PKHeXRNG
         {
             ulong pointer;
             if (index == 624)
-                pointer = SFMTStart;
+                pointer = SFMTAddressStart;
             else
-                pointer = SFMTStart + (index * 4);
+                pointer = SFMTAddressStart + (index * 4);
             return pointer;
         }
     }

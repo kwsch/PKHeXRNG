@@ -17,7 +17,6 @@ namespace PKHeXRNG
         public abstract ulong EggSeedOffset { get; }
         public abstract ulong EggReadyOffset { get; }
 
-        [TypeConverter(typeof(ExpandableObjectConverter))]
         public RNGState Main { get; } = new RNGState();
 
         public bool EggReady { get; private set; }
@@ -51,14 +50,14 @@ namespace PKHeXRNG
     {
         public G7GameStateSM(IDeviceRW device) : base(device)
         {
-            Main.SeedAddress = 0x325A3878; // 1.2; 0x325A3838 1.1
-            Main.SFMTStart = 0x33195B88;
-            Main.SFMTIndex = 0x33196548;
+            Main.SFMTAddressSeed = 0x325A3878; // [1.2: 0x325A3878] [1.1: 0x325A3838] [1.0: 0x325A3878]
+
+            //
+            Main.SFMTAddressStart = 0x33195B7C; // [1.2: 0x33195B88] [1.1: ???] [1.0 0x33195B7C]
             Main.Initialize(Device);
 
-            SOS.SeedAddress = 0x30038C44;
-            SOS.SFMTStart = 0x30038C44;
-            SOS.SFMTIndex = 0x30039604;
+            SOS.SFMTAddressSeed = 0x30038C44;
+            SOS.SFMTAddressStart = 0x30038C44;
             SOS.Initialize(Device);
         }
 
@@ -67,7 +66,6 @@ namespace PKHeXRNG
 
         public override Dictionary<string, ulong> PokeOffsets => GameOffsets.SM;
 
-        [TypeConverter(typeof(ExpandableObjectConverter))]
         public RNGState SOS { get; } = new RNGState();
 
         public readonly ulong SOSChainLength = 0x3003D379; // wrong
@@ -83,9 +81,8 @@ namespace PKHeXRNG
     {
         public G7GameStateUSUM(IDeviceRW device) : base(device)
         {
-            Main.SeedAddress = 0x32663BF0;
-            Main.SFMTStart = 0x330D35D8;
-            Main.SFMTIndex = 0x330D3F98;
+            Main.SFMTAddressSeed = 0x32663BF0;
+            Main.SFMTAddressStart = 0x330D35D8;
             Main.Initialize(Device);
         }
 
