@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Magnetosphere;
 using PKHeX.Core;
@@ -52,7 +51,6 @@ namespace PKHeXRNG
         {
             Main.SFMTAddressSeed = 0x325A3878; // [1.2: 0x325A3878] [1.1: 0x325A3838] [1.0: 0x325A3878]
 
-            //
             Main.SFMTAddressStart = 0x33195B7C; // [1.2: 0x33195B88] [1.1: ???] [1.0 0x33195B7C]
             Main.Initialize(Device);
 
@@ -68,13 +66,30 @@ namespace PKHeXRNG
 
         public RNGState SOS { get; } = new RNGState();
 
-        public readonly ulong SOSChainLength = 0x3003D379; // wrong
+        public const ulong WildBattleMTRNGIndex    = 0x30039604;
+        public const ulong WildBattleAdrenaline    = 0x3003960C;
+        public const ulong WildBattleSOSChainCount = 0x3003960D; // One byte after the flag for Adrenaline Orb Used
         public const ulong TrainerOffset = 0x330D67D0;
 
         public override void LoadTrainerData(SaveFile SAV)
         {
             Device.Read(TrainerOffset, 0xC0).CopyTo(SAV.Data, 0x01200);
         }
+
+        private GamePatchNumber DetectPatch()
+        {
+            return GamePatchNumber.Unpatched;
+        }
+    }
+
+    public enum GamePatchNumber
+    {
+        Unpatched = 0,
+        VER_1_1 = 1,
+        VER_1_2 = 2,
+        VER_1_3 = 3,
+        VER_1_4 = 4,
+        VER_1_5 = 5,
     }
 
     public class G7GameStateUSUM : G7GameState

@@ -33,6 +33,8 @@
             this.L_Port = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Tab_Main = new System.Windows.Forms.TabPage();
+            this.L_LastViewed = new System.Windows.Forms.Label();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.CB_PKMOffsets = new System.Windows.Forms.ComboBox();
             this.B_ReadPKM = new System.Windows.Forms.Button();
             this.NUD_Read = new System.Windows.Forms.NumericUpDown();
@@ -54,8 +56,6 @@
             this.B_Search = new System.Windows.Forms.Button();
             this.NUD_SearchOffset = new System.Windows.Forms.NumericUpDown();
             this.B_Disconnect = new System.Windows.Forms.Button();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.L_LastViewed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Port)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Tab_Main.SuspendLayout();
@@ -134,6 +134,23 @@
             this.Tab_Main.Text = "Main";
             this.Tab_Main.UseVisualStyleBackColor = true;
             // 
+            // L_LastViewed
+            // 
+            this.L_LastViewed.AutoSize = true;
+            this.L_LastViewed.Location = new System.Drawing.Point(337, 8);
+            this.L_LastViewed.Name = "L_LastViewed";
+            this.L_LastViewed.Size = new System.Drawing.Size(68, 13);
+            this.L_LastViewed.TabIndex = 4;
+            this.L_LastViewed.Text = "Last Viewed:";
+            this.L_LastViewed.Visible = false;
+            // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Location = new System.Drawing.Point(6, 32);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(325, 333);
+            this.propertyGrid1.TabIndex = 3;
+            // 
             // CB_PKMOffsets
             // 
             this.CB_PKMOffsets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -156,6 +173,11 @@
             // NUD_Read
             // 
             this.NUD_Read.Hexadecimal = true;
+            this.NUD_Read.Increment = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
             this.NUD_Read.Location = new System.Drawing.Point(84, 6);
             this.NUD_Read.Maximum = new decimal(new int[] {
             2147483647,
@@ -203,6 +225,11 @@
             // NUD_ReadLength
             // 
             this.NUD_ReadLength.Hexadecimal = true;
+            this.NUD_ReadLength.Increment = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
             this.NUD_ReadLength.Location = new System.Drawing.Point(169, 11);
             this.NUD_ReadLength.Maximum = new decimal(new int[] {
             1048576,
@@ -231,6 +258,11 @@
             // NUD_ReadOffset
             // 
             this.NUD_ReadOffset.Hexadecimal = true;
+            this.NUD_ReadOffset.Increment = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
             this.NUD_ReadOffset.Location = new System.Drawing.Point(47, 11);
             this.NUD_ReadOffset.Maximum = new decimal(new int[] {
             2147483647,
@@ -333,6 +365,11 @@
             // NUD_SearchLength
             // 
             this.NUD_SearchLength.Hexadecimal = true;
+            this.NUD_SearchLength.Increment = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
             this.NUD_SearchLength.Location = new System.Drawing.Point(169, 11);
             this.NUD_SearchLength.Maximum = new decimal(new int[] {
             268435456,
@@ -347,6 +384,7 @@
             0,
             0,
             0});
+            this.NUD_SearchLength.ValueChanged += new System.EventHandler(this.NUD_SearchLength_ValueChanged);
             // 
             // B_Search
             // 
@@ -361,6 +399,11 @@
             // NUD_SearchOffset
             // 
             this.NUD_SearchOffset.Hexadecimal = true;
+            this.NUD_SearchOffset.Increment = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
             this.NUD_SearchOffset.Location = new System.Drawing.Point(47, 11);
             this.NUD_SearchOffset.Maximum = new decimal(new int[] {
             2147483647,
@@ -381,23 +424,6 @@
             this.B_Disconnect.Text = "Disconnect";
             this.B_Disconnect.UseVisualStyleBackColor = true;
             this.B_Disconnect.Click += new System.EventHandler(this.B_Disconnect_Click);
-            // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Location = new System.Drawing.Point(6, 32);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(325, 333);
-            this.propertyGrid1.TabIndex = 3;
-            // 
-            // L_LastViewed
-            // 
-            this.L_LastViewed.AutoSize = true;
-            this.L_LastViewed.Location = new System.Drawing.Point(337, 8);
-            this.L_LastViewed.Name = "L_LastViewed";
-            this.L_LastViewed.Size = new System.Drawing.Size(68, 13);
-            this.L_LastViewed.TabIndex = 4;
-            this.L_LastViewed.Text = "Last Viewed:";
-            this.L_LastViewed.Visible = false;
             // 
             // CitraRNG
             // 

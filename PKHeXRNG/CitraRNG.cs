@@ -4,6 +4,7 @@ using System.Windows.Forms;
 
 using Magnetosphere;
 using PKHeX.Core;
+using Timer = System.Timers.Timer;
 
 namespace PKHeXRNG
 {
@@ -43,7 +44,7 @@ namespace PKHeXRNG
             NUD_ReadOffset.Value = NUD_SearchOffset.Value = source[0].Value;
         }
 
-        private readonly System.Timers.Timer StateMonitor = new System.Timers.Timer(500);
+        private readonly Timer StateMonitor = new Timer(500);
 
         private void B_Disconnect_Click(object sender, EventArgs e)
         {
@@ -58,9 +59,13 @@ namespace PKHeXRNG
             Citra = (CitraTranslator) CitraWindow.Translator;
             ToggleConnection(true);
 
-            var state = G7GameState.GetState(Plugin.SaveFileEditor.SAV.Version, Citra);
+            var sav = Plugin.SaveFileEditor.SAV;
+            var state = G7GameState.GetState(sav.Version, Citra);
             propertyGrid1.SelectedObject = state;
             LoadRNGStateView(state);
+
+            state.LoadTrainerData(sav);
+            Text = $"Current Trainer Details: {sav.OT} {sav.Version} {sav.TrainerID7}";
         }
 
         private void LoadRNGStateView(G7GameState state)
@@ -70,7 +75,6 @@ namespace PKHeXRNG
                 state.Update();
                 propertyGrid1.Invalidate();
             };
-            ((G7GameState) propertyGrid1.SelectedObject).LoadTrainerData(Plugin.SaveFileEditor.SAV);
             StateMonitor.Start();
         }
 
@@ -125,5 +129,7 @@ namespace PKHeXRNG
             StateMonitor.Stop();
             StateMonitor.Dispose();
         }
+
+        private void NUD_SearchLength_ValueChanged(object sender, EventArgs e) => NUD_SearchOffset.Increment = NUD_SearchLength.Value;
     }
 }
