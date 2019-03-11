@@ -61,7 +61,7 @@ namespace PKHeXRNG
 
             var sav = Plugin.SaveFileEditor.SAV;
             var state = G7GameState.GetState(sav.Version, Citra);
-            propertyGrid1.SelectedObject = state;
+            PG_State.SelectedObject = state;
             LoadRNGStateView(state);
 
             state.LoadTrainerData(sav);
@@ -73,14 +73,14 @@ namespace PKHeXRNG
             StateMonitor.Elapsed += (s, e) =>
             {
                 state.Update();
-                propertyGrid1.Invalidate();
+                PG_State.Invalidate();
             };
             StateMonitor.Start();
         }
 
         private void ToggleConnection(bool conn)
         {
-            tabControl1.Enabled = B_Disconnect.Enabled = conn;
+            TC_Interactions.Enabled = B_Disconnect.Enabled = conn;
             NUD_Port.Enabled = B_Connect.Enabled = !conn;
         }
 

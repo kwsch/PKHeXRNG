@@ -31,10 +31,10 @@
             this.B_Connect = new System.Windows.Forms.Button();
             this.NUD_Port = new System.Windows.Forms.NumericUpDown();
             this.L_Port = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.TC_Interactions = new System.Windows.Forms.TabControl();
             this.Tab_Main = new System.Windows.Forms.TabPage();
             this.L_LastViewed = new System.Windows.Forms.Label();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.PG_State = new System.Windows.Forms.PropertyGrid();
             this.CB_PKMOffsets = new System.Windows.Forms.ComboBox();
             this.B_ReadPKM = new System.Windows.Forms.Button();
             this.NUD_Read = new System.Windows.Forms.NumericUpDown();
@@ -46,8 +46,8 @@
             this.NUD_ReadOffset = new System.Windows.Forms.NumericUpDown();
             this.RTB_MemDump = new System.Windows.Forms.RichTextBox();
             this.Tab_Search = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.L_SearchSequence = new System.Windows.Forms.Label();
+            this.L_SearchOffsetResults = new System.Windows.Forms.Label();
             this.RTB_Sequence = new System.Windows.Forms.RichTextBox();
             this.RTB_Offsets = new System.Windows.Forms.RichTextBox();
             this.L_SearchLength = new System.Windows.Forms.Label();
@@ -57,7 +57,7 @@
             this.NUD_SearchOffset = new System.Windows.Forms.NumericUpDown();
             this.B_Disconnect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Port)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.TC_Interactions.SuspendLayout();
             this.Tab_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Read)).BeginInit();
             this.Tab_Memory.SuspendLayout();
@@ -104,32 +104,32 @@
             this.L_Port.TabIndex = 2;
             this.L_Port.Text = "Port:";
             // 
-            // tabControl1
+            // TC_Interactions
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TC_Interactions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.Tab_Main);
-            this.tabControl1.Controls.Add(this.Tab_Memory);
-            this.tabControl1.Controls.Add(this.Tab_Search);
-            this.tabControl1.Enabled = false;
-            this.tabControl1.Location = new System.Drawing.Point(12, 41);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 397);
-            this.tabControl1.TabIndex = 3;
+            this.TC_Interactions.Controls.Add(this.Tab_Main);
+            this.TC_Interactions.Controls.Add(this.Tab_Memory);
+            this.TC_Interactions.Controls.Add(this.Tab_Search);
+            this.TC_Interactions.Enabled = false;
+            this.TC_Interactions.Location = new System.Drawing.Point(12, 41);
+            this.TC_Interactions.Name = "TC_Interactions";
+            this.TC_Interactions.SelectedIndex = 0;
+            this.TC_Interactions.Size = new System.Drawing.Size(595, 358);
+            this.TC_Interactions.TabIndex = 3;
             // 
             // Tab_Main
             // 
             this.Tab_Main.Controls.Add(this.L_LastViewed);
-            this.Tab_Main.Controls.Add(this.propertyGrid1);
+            this.Tab_Main.Controls.Add(this.PG_State);
             this.Tab_Main.Controls.Add(this.CB_PKMOffsets);
             this.Tab_Main.Controls.Add(this.B_ReadPKM);
             this.Tab_Main.Controls.Add(this.NUD_Read);
             this.Tab_Main.Location = new System.Drawing.Point(4, 22);
             this.Tab_Main.Name = "Tab_Main";
             this.Tab_Main.Padding = new System.Windows.Forms.Padding(3);
-            this.Tab_Main.Size = new System.Drawing.Size(768, 371);
+            this.Tab_Main.Size = new System.Drawing.Size(584, 371);
             this.Tab_Main.TabIndex = 1;
             this.Tab_Main.Text = "Main";
             this.Tab_Main.UseVisualStyleBackColor = true;
@@ -144,12 +144,14 @@
             this.L_LastViewed.Text = "Last Viewed:";
             this.L_LastViewed.Visible = false;
             // 
-            // propertyGrid1
+            // PG_State
             // 
-            this.propertyGrid1.Location = new System.Drawing.Point(6, 32);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(325, 333);
-            this.propertyGrid1.TabIndex = 3;
+            this.PG_State.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.PG_State.Location = new System.Drawing.Point(6, 32);
+            this.PG_State.Name = "PG_State";
+            this.PG_State.Size = new System.Drawing.Size(325, 333);
+            this.PG_State.TabIndex = 3;
             // 
             // CB_PKMOffsets
             // 
@@ -199,7 +201,7 @@
             this.Tab_Memory.Location = new System.Drawing.Point(4, 22);
             this.Tab_Memory.Name = "Tab_Memory";
             this.Tab_Memory.Padding = new System.Windows.Forms.Padding(3);
-            this.Tab_Memory.Size = new System.Drawing.Size(768, 371);
+            this.Tab_Memory.Size = new System.Drawing.Size(584, 371);
             this.Tab_Memory.TabIndex = 2;
             this.Tab_Memory.Text = "MemView";
             this.Tab_Memory.UseVisualStyleBackColor = true;
@@ -280,18 +282,21 @@
             // 
             // RTB_MemDump
             // 
+            this.RTB_MemDump.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RTB_MemDump.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RTB_MemDump.Location = new System.Drawing.Point(0, 37);
             this.RTB_MemDump.Name = "RTB_MemDump";
             this.RTB_MemDump.ReadOnly = true;
-            this.RTB_MemDump.Size = new System.Drawing.Size(768, 334);
+            this.RTB_MemDump.Size = new System.Drawing.Size(584, 334);
             this.RTB_MemDump.TabIndex = 0;
             this.RTB_MemDump.Text = "";
             // 
             // Tab_Search
             // 
-            this.Tab_Search.Controls.Add(this.label4);
-            this.Tab_Search.Controls.Add(this.label3);
+            this.Tab_Search.Controls.Add(this.L_SearchSequence);
+            this.Tab_Search.Controls.Add(this.L_SearchOffsetResults);
             this.Tab_Search.Controls.Add(this.RTB_Sequence);
             this.Tab_Search.Controls.Add(this.RTB_Offsets);
             this.Tab_Search.Controls.Add(this.L_SearchLength);
@@ -302,45 +307,51 @@
             this.Tab_Search.Location = new System.Drawing.Point(4, 22);
             this.Tab_Search.Name = "Tab_Search";
             this.Tab_Search.Padding = new System.Windows.Forms.Padding(3);
-            this.Tab_Search.Size = new System.Drawing.Size(768, 371);
+            this.Tab_Search.Size = new System.Drawing.Size(587, 332);
             this.Tab_Search.TabIndex = 3;
             this.Tab_Search.Text = "Search";
             this.Tab_Search.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // L_SearchSequence
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(332, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Byte Sequence (Hex)";
+            this.L_SearchSequence.AutoSize = true;
+            this.L_SearchSequence.Location = new System.Drawing.Point(332, 21);
+            this.L_SearchSequence.Name = "L_SearchSequence";
+            this.L_SearchSequence.Size = new System.Drawing.Size(108, 13);
+            this.L_SearchSequence.TabIndex = 14;
+            this.L_SearchSequence.Text = "Byte Sequence (Hex)";
             // 
-            // label3
+            // L_SearchOffsetResults
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(467, 21);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Offset(s):";
+            this.L_SearchOffsetResults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.L_SearchOffsetResults.AutoSize = true;
+            this.L_SearchOffsetResults.Location = new System.Drawing.Point(470, 21);
+            this.L_SearchOffsetResults.Name = "L_SearchOffsetResults";
+            this.L_SearchOffsetResults.Size = new System.Drawing.Size(49, 13);
+            this.L_SearchOffsetResults.TabIndex = 13;
+            this.L_SearchOffsetResults.Text = "Offset(s):";
             // 
             // RTB_Sequence
             // 
+            this.RTB_Sequence.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RTB_Sequence.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RTB_Sequence.Location = new System.Drawing.Point(0, 37);
             this.RTB_Sequence.Name = "RTB_Sequence";
-            this.RTB_Sequence.Size = new System.Drawing.Size(471, 334);
+            this.RTB_Sequence.Size = new System.Drawing.Size(474, 295);
             this.RTB_Sequence.TabIndex = 12;
             this.RTB_Sequence.Text = "";
             // 
             // RTB_Offsets
             // 
+            this.RTB_Offsets.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RTB_Offsets.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RTB_Offsets.Location = new System.Drawing.Point(470, 37);
+            this.RTB_Offsets.Location = new System.Drawing.Point(473, 37);
             this.RTB_Offsets.Name = "RTB_Offsets";
             this.RTB_Offsets.ReadOnly = true;
-            this.RTB_Offsets.Size = new System.Drawing.Size(298, 334);
+            this.RTB_Offsets.Size = new System.Drawing.Size(114, 295);
             this.RTB_Offsets.TabIndex = 11;
             this.RTB_Offsets.Text = "";
             // 
@@ -429,17 +440,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(619, 411);
             this.Controls.Add(this.L_Port);
             this.Controls.Add(this.NUD_Port);
             this.Controls.Add(this.B_Disconnect);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.TC_Interactions);
             this.Controls.Add(this.B_Connect);
             this.Name = "CitraRNG";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CitraRNG";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CitraRNG_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Port)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.TC_Interactions.ResumeLayout(false);
             this.Tab_Main.ResumeLayout(false);
             this.Tab_Main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Read)).EndInit();
@@ -461,7 +473,7 @@
         private System.Windows.Forms.Button B_Connect;
         private System.Windows.Forms.NumericUpDown NUD_Port;
         private System.Windows.Forms.Label L_Port;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl TC_Interactions;
         private System.Windows.Forms.TabPage Tab_Main;
         private System.Windows.Forms.Button B_Disconnect;
         private System.Windows.Forms.Button B_ReadPKM;
@@ -475,7 +487,7 @@
         private System.Windows.Forms.NumericUpDown NUD_ReadOffset;
         private System.Windows.Forms.Label L_Length;
         private System.Windows.Forms.TabPage Tab_Search;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label L_SearchOffsetResults;
         private System.Windows.Forms.RichTextBox RTB_Sequence;
         private System.Windows.Forms.RichTextBox RTB_Offsets;
         private System.Windows.Forms.Label L_SearchLength;
@@ -483,8 +495,8 @@
         private System.Windows.Forms.NumericUpDown NUD_SearchLength;
         private System.Windows.Forms.Button B_Search;
         private System.Windows.Forms.NumericUpDown NUD_SearchOffset;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PropertyGrid propertyGrid1;
+        private System.Windows.Forms.Label L_SearchSequence;
+        private System.Windows.Forms.PropertyGrid PG_State;
         private System.Windows.Forms.Label L_LastViewed;
     }
 }

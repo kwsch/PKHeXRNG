@@ -49,7 +49,7 @@ namespace PKHeXRNG
     {
         public G7GameStateSM(IDeviceRW device) : base(device)
         {
-            Main.SFMTAddressSeed = 0x325A3878; // [1.2: 0x325A3878] [1.1: 0x325A3838] [1.0: 0x325A3878]
+            Main.SFMTAddressSeed = 0x325A3878; // [1.2: 0x325A3878] [1.1: ??] [1.0: ???]
 
             Main.SFMTAddressStart = 0x33195B7C; // [1.2: 0x33195B88] [1.1: ???] [1.0 0x33195B7C]
             Main.Initialize(Device);
