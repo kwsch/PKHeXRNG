@@ -56,6 +56,7 @@
             this.B_Search = new System.Windows.Forms.Button();
             this.NUD_SearchOffset = new System.Windows.Forms.NumericUpDown();
             this.B_Disconnect = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Port)).BeginInit();
             this.TC_Interactions.SuspendLayout();
             this.Tab_Main.SuspendLayout();
@@ -129,7 +130,7 @@
             this.Tab_Main.Location = new System.Drawing.Point(4, 22);
             this.Tab_Main.Name = "Tab_Main";
             this.Tab_Main.Padding = new System.Windows.Forms.Padding(3);
-            this.Tab_Main.Size = new System.Drawing.Size(584, 371);
+            this.Tab_Main.Size = new System.Drawing.Size(587, 332);
             this.Tab_Main.TabIndex = 1;
             this.Tab_Main.Text = "Main";
             this.Tab_Main.UseVisualStyleBackColor = true;
@@ -150,7 +151,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PG_State.Location = new System.Drawing.Point(6, 32);
             this.PG_State.Name = "PG_State";
-            this.PG_State.Size = new System.Drawing.Size(325, 333);
+            this.PG_State.Size = new System.Drawing.Size(325, 294);
             this.PG_State.TabIndex = 3;
             // 
             // CB_PKMOffsets
@@ -201,7 +202,7 @@
             this.Tab_Memory.Location = new System.Drawing.Point(4, 22);
             this.Tab_Memory.Name = "Tab_Memory";
             this.Tab_Memory.Padding = new System.Windows.Forms.Padding(3);
-            this.Tab_Memory.Size = new System.Drawing.Size(584, 371);
+            this.Tab_Memory.Size = new System.Drawing.Size(587, 332);
             this.Tab_Memory.TabIndex = 2;
             this.Tab_Memory.Text = "MemView";
             this.Tab_Memory.UseVisualStyleBackColor = true;
@@ -289,7 +290,7 @@
             this.RTB_MemDump.Location = new System.Drawing.Point(0, 37);
             this.RTB_MemDump.Name = "RTB_MemDump";
             this.RTB_MemDump.ReadOnly = true;
-            this.RTB_MemDump.Size = new System.Drawing.Size(584, 334);
+            this.RTB_MemDump.Size = new System.Drawing.Size(587, 295);
             this.RTB_MemDump.TabIndex = 0;
             this.RTB_MemDump.Text = "";
             // 
@@ -436,11 +437,22 @@
             this.B_Disconnect.UseVisualStyleBackColor = true;
             this.B_Disconnect.Click += new System.EventHandler(this.B_Disconnect_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(532, 9);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "BitWrite";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.B_BitWrite_Click);
+            // 
             // CitraRNG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 411);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.L_Port);
             this.Controls.Add(this.NUD_Port);
             this.Controls.Add(this.B_Disconnect);
@@ -498,5 +510,6 @@
         private System.Windows.Forms.Label L_SearchSequence;
         private System.Windows.Forms.PropertyGrid PG_State;
         private System.Windows.Forms.Label L_LastViewed;
+        private System.Windows.Forms.Button button1;
     }
 }

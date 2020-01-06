@@ -97,6 +97,12 @@ namespace PKHeXRNG
             L_LastViewed.Visible = true;
         }
 
+        private void B_BitWrite_Click(object sender, EventArgs e)
+        {
+            var offset = (uint)NUD_Read.Value;
+            Citra.WriteMemory(new byte[] {0xCC}, offset);
+        }
+
         public bool GetPKM(uint offset, out PKM pkm)
         {
             var data = Citra.ReadMemory(offset, 0xE8);
